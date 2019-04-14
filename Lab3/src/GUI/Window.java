@@ -40,7 +40,7 @@ public class Window {
         pane.getMyConstraints().setPosition(1,1,1);
         pane.getPane().add(pane.getAlgebraicFormLabelLabel(),pane.getMyConstraints().getConstraints());
         pane.getMyConstraints().setPosition(1,1,2);
-        pane.getPane().add(pane.getExponentialFormLabelLabel(),pane.getMyConstraints().getConstraints());
+      //  pane.getPane().add(pane.getExponentialFormLabelLabel(),pane.getMyConstraints().getConstraints());
         pane.getMyConstraints().setPosition(1,1,4);
         pane.getPane().add(pane.getResultLabel(),pane.getMyConstraints().getConstraints());
         pane.getMyConstraints().setPosition(1,1,3);

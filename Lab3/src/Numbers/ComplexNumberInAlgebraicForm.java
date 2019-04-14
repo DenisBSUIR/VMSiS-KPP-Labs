@@ -1,4 +1,6 @@
 package Numbers;
+import Exceptions.NullValuesException;
+
 import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;
 import static java.lang.Math.tan;
@@ -18,24 +20,43 @@ public class ComplexNumberInAlgebraicForm extends ComplexNumber {
         this.realPart = realPart;
     }
 
-    public void add(Number operand) {
+    public void add(Number operand) throws NullValuesException {
+        if((((ComplexNumberInAlgebraicForm)operand).getRealPart() == 0 & ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart() == 0) |
+                (imaginaryPart == 0 & realPart == 0)){
+            throw new NullValuesException(new IllegalArgumentException("NullValueException"));
+        }
         imaginaryPart += ((ComplexNumberInAlgebraicForm)operand).getRealPart();
         realPart += ((ComplexNumberInAlgebraicForm)operand).getRealPart();
     }
 
-    public void subtract(Number operand){
-        imaginaryPart -= ((ComplexNumberInAlgebraicForm)operand).getRealPart();
+    public void subtract(Number operand) throws NullValuesException{
+        if((((ComplexNumberInAlgebraicForm)operand).getRealPart() == 0 & ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart() == 0) |
+                (imaginaryPart == 0 & realPart == 0)){
+            throw new NullValuesException(new IllegalArgumentException("NullValueException"));
+        }
+
+        imaginaryPart -= ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart();
         realPart -= ((ComplexNumberInAlgebraicForm)operand).getRealPart();
     }
 
-    public void multiply(Number operand){
+    public void multiply(Number operand)throws NullValuesException{
+        if((((ComplexNumberInAlgebraicForm)operand).getRealPart() == 0 & ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart() == 0) |
+                (imaginaryPart == 0 & realPart == 0)){
+            throw new NullValuesException(new IllegalArgumentException("NullValueException"));
+        }
+
         realPart = realPart * ((ComplexNumberInAlgebraicForm)operand).getRealPart() -
                 imaginaryPart * ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart();
         imaginaryPart = imaginaryPart * ((ComplexNumberInAlgebraicForm)operand).getRealPart() +
                 realPart * ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart();
     }
 
-    public void divide(Number operand){
+    public void divide(Number operand)throws NullValuesException{
+        if((((ComplexNumberInAlgebraicForm)operand).getRealPart() == 0 & ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart() == 0) |
+                (imaginaryPart == 0 & realPart == 0)){
+            throw new NullValuesException(new IllegalArgumentException("NullValueException"));
+        }
+
         realPart = (realPart * ((ComplexNumberInAlgebraicForm)operand).getRealPart() + imaginaryPart * ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart()) /
                 (pow(((ComplexNumberInAlgebraicForm)operand).getRealPart(),2) + pow(((ComplexNumberInAlgebraicForm)operand).getImaginaryPart(), 2));
         imaginaryPart = (imaginaryPart * ((ComplexNumberInAlgebraicForm)operand).getRealPart() - realPart * ((ComplexNumberInAlgebraicForm)operand).getImaginaryPart()) /

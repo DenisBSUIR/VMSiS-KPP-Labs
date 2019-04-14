@@ -9,12 +9,12 @@ public class ComplexNumberInExponentialForm extends ComplexNumber {
     private double module;
     private double phase;
 
-    public void add(Number operand) {
+    public void add(Number operand)  {
         ComplexNumberInAlgebraicForm tempNumberRight = new ComplexNumberInAlgebraicForm();
         ComplexNumberInAlgebraicForm tempNumberLeft = new ComplexNumberInAlgebraicForm();
         this.translateIntoAlgebraicForm(tempNumberLeft);
         ((ComplexNumberInExponentialForm)operand).translateIntoAlgebraicForm(tempNumberRight);
-        tempNumberLeft.add(tempNumberRight);
+       // tempNumberLeft.add(tempNumberRight);
         tempNumberLeft.translateIntoExponentialForm(this);
     }
 
@@ -23,8 +23,8 @@ public class ComplexNumberInExponentialForm extends ComplexNumber {
         ComplexNumberInAlgebraicForm tempNumberLeft = new ComplexNumberInAlgebraicForm();
         this.translateIntoAlgebraicForm(tempNumberLeft);
         ((ComplexNumberInExponentialForm)operand).translateIntoAlgebraicForm(tempNumberRight);
-        tempNumberLeft.subtract(tempNumberRight);
-        tempNumberLeft.translateIntoExponentialForm(this);
+      //  tempNumberLeft.subtract(tempNumberRight);
+     //   tempNumberLeft.translateIntoExponentialForm(this);
     }
 
     public void multiply(Number operand){

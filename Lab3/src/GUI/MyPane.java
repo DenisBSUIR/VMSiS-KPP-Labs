@@ -1,8 +1,14 @@
 package GUI;
 
+import Exceptions.NullValuesException;
+import Numbers.ComplexNumberInAlgebraicForm;
+import Numbers.Expression;
+import Numbers.Human;
+
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class MyPane {
@@ -118,6 +124,101 @@ public class MyPane {
     }
 
 
+    public void setActionPerform(Window window,Expression expression, Human human){
+        continueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                human.setName(nameTextField.getText());
+                window.setMainWindow();
+            }
+        });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getPane().removeAll();
+                getPane().repaint();
+                nameTextField.setText("");
+                window.setStartWindow();
+                expression.getOperands().removeAll(expression.getOperands());
+            }
+        });
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ComplexNumberInAlgebraicForm number = new ComplexNumberInAlgebraicForm();
+                number.setImaginaryPart(Double.parseDouble(window.getPane().getImaginaryTextField().getText()));
+                number.setRealPart(Double.parseDouble(window.getPane().getRealTextField().getText()));
+                expression.addOperand(number);
+                imaginaryTextField.setText("");
+                window.getPane().getRealTextField().setText("");
+            }
+        });
+
+        transferButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ((ComplexNumberInAlgebraicForm) expression.getOperands().get(0)).add(expression.getOperands().get(1));
+                }
+                catch(NullValuesException exc){
+                    System.out.println("Operands with 0 value");
+                }
+                resultFirstLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getRealPart()));
+                resultSecondLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getImaginaryPart()));
+
+            }
+        });
+
+        subtractButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ((ComplexNumberInAlgebraicForm) expression.getOperands().get(0)).subtract(expression.getOperands().get(1));
+                }
+                catch(NullValuesException exc){
+                    System.out.println("Operands with 0 value");
+                }
+                resultFirstLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getRealPart()));
+                resultSecondLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getImaginaryPart()));
+            }
+        });
+
+        multiplyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ((ComplexNumberInAlgebraicForm) expression.getOperands().get(0)).multiply(expression.getOperands().get(1));
+                }
+                catch(NullValuesException exc){
+                    System.out.println("Operands with 0 value");
+                }
+                resultFirstLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getRealPart()));
+                resultSecondLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getImaginaryPart()));
+            }
+        });
+
+        divideButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ((ComplexNumberInAlgebraicForm) expression.getOperands().get(0)).divide(expression.getOperands().get(1));
+                }
+                catch(NullValuesException exc){
+                    System.out.println("Operands with 0 value");
+                }
+                resultFirstLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getRealPart()));
+                resultSecondLabel.setText(Double.toString(((ComplexNumberInAlgebraicForm)expression.getOperands().get(0)).getImaginaryPart()));
+            }
+        });
+    }
 
     public Constraints getMyConstraints()
     {

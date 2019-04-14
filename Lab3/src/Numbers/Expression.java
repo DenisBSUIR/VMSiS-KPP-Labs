@@ -1,4 +1,6 @@
 package Numbers;
+import Exceptions.NullValuesException;
+
 import java.util.ArrayList;
 
 public class Expression {
@@ -12,22 +14,27 @@ public class Expression {
     }
 
     public void calculate(){
-        switch(operation){
-            case "add":
-                ((ComplexNumberInAlgebraicForm)operands.get(0)).add(operands.get(0));
-                break;
-            case "subtract":
-                ((ComplexNumberInAlgebraicForm)operands.get(0)).subtract(operands.get(0));
-                break;
-            case "multiply":
-                ((ComplexNumberInAlgebraicForm)operands.get(0)).multiply(operands.get(0));
-                break;
-            case "divide":
-                ((ComplexNumberInAlgebraicForm)operands.get(0)).divide(operands.get(0));
-                break;
-            default:
-                break;
+        try {
+            switch (operation) {
+                case "add":
+                    ((ComplexNumberInAlgebraicForm) operands.get(0)).add(operands.get(0));
+                    break;
+                case "subtract":
+                    ((ComplexNumberInAlgebraicForm) operands.get(0)).subtract(operands.get(0));
+                    break;
+                case "multiply":
+                    ((ComplexNumberInAlgebraicForm) operands.get(0)).multiply(operands.get(0));
+                    break;
+                case "divide":
+                    ((ComplexNumberInAlgebraicForm) operands.get(0)).divide(operands.get(0));
+                    break;
+                default:
+                    break;
+            }
+        } catch(NullValuesException e) {
+            System.out.println("0 Values");
         }
+
     }
 
     public ArrayList<Number> getOperands(){
